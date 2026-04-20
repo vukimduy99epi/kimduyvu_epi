@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kim-Duy Vu — CV</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2e6da4;
+      --light: #f4f7fb;
+      --border: #d0dce8;
+      --text: #222;
+      --muted: #555;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Georgia", serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    header {
+      border-top: 4px solid var(--primary);
+      padding: 28px 0 20px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .header-text h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+    }
+
+    .header-text .title {
+      font-size: 1rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .contact-grid span::before {
+      margin-right: 4px;
+    }
+
+    /* ── Sections ── */
+    section { margin-top: 32px; }
+
+    .section-title {
+      font-size: 0.78rem;
+      font-family: "Arial", sans-serif;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+      margin-bottom: 16px;
+    }
+
+    /* Summary */
+    .summary-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    /* Experience */
+    .entry { margin-bottom: 22px; }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .entry-header h3 {
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .entry-date {
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-family: "Arial", sans-serif;
+      white-space: nowrap;
+    }
+
+    .entry-org {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .entry ul {
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .entry ul li { margin-bottom: 4px; }
+
+    /* Skills table */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .skills-table td {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .skills-table td:first-child {
+      font-weight: bold;
+      color: var(--primary);
+      white-space: nowrap;
+      background: var(--light);
+      width: 30%;
+    }
+
+    /* Awards */
+    .award-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .award-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .award-list li:last-child { border-bottom: none; }
+
+    .award-year {
+      font-family: "Arial", sans-serif;
+      font-size: 0.82rem;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    /* Publications */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: pub;
+    }
+
+    .pub-list li {
+      counter-increment: pub;
+      padding: 8px 0 8px 32px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .pub-list li:last-child { border-bottom: none; }
+
+    .pub-list li::before {
+      content: counter(pub) ".";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      font-weight: bold;
+      color: var(--primary);
+      font-family: "Arial", sans-serif;
+      font-size: 0.82rem;
+    }
+
+    .pub-list li .journal { font-style: italic; }
+    .pub-list li strong { color: var(--text); }
+
+    /* References */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .ref-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
+    }
+
+    .ref-card h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .ref-card p {
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #aaa;
+      font-family: "Arial", sans-serif;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* Print */
+    @media print {
+      body { font-size: 13px; }
+      .page { margin: 0; padding: 0 16px; }
+      header { padding: 16px 0 12px; }
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; }
+      .ref-grid { grid-template-columns: 1fr; }
+      .entry-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-text">
+      <h1>Kim-Duy Vu</h1>
+      <div class="title">MD &nbsp;·&nbsp; Epidemiologist &nbsp;·&nbsp; Research Assistant</div>
+      <div class="contact-grid">
+        <span>📧 <a href="mailto:vukimduy99@gmail.com">vukimduy99@gmail.com</a></span>
+        <span>📞 +84.967.068.055</span>
+        <span>📍 Hanoi, Vietnam</span>
+        <span>🔗 <a href="https://www.linkedin.com/in/kimduyvu2406/" target="_blank">LinkedIn</a></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="section-title">Summary</div>
+    <p class="summary-text">
+      Kim-Duy Vu, MD, is an epidemiologist and research assistant at the National Institute of Hygiene and
+      Epidemiology (NIHE), Hanoi, Vietnam. He applies epidemiologic methods and advanced statistical techniques
+      to manage, analyze, and interpret health data. His research program aims to strengthen the prevention,
+      control, and clinical management of HIV and sexually transmitted infections (STIs), with a particular
+      focus on evaluating intervention studies and generating evidence to inform public health practice.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-title">Experience</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Epidemiological Surveillance Officer</h3>
+        <span class="entry-date">Mar 2025 – Present</span>
+      </div>
+      <div class="entry-org">HIV/AIDS Department, National Institute of Hygiene and Epidemiology — Hanoi, Vietnam</div>
+      <ul>
+        <li>Provided technical support and guidance to provincial teams on assessing data quality and using surveillance data to evaluate the HIV epidemic situation in Vietnam.</li>
+        <li>Reviewed, verified, and analyzed routine HIV/AIDS prevention and control reports within Vietnam's national reporting system.</li>
+        <li>Delivered data feedback and supported provinces/cities to conduct data validation and quality assurance for HIV/AIDS prevention and control reporting.</li>
+        <li>Aggregated and analyzed surveillance data; prepared routine summary reports on HIV/AIDS prevention and control in Vietnam.</li>
+        <li>Participated in technical working group meetings to revise and standardize procedures for routine HIV sentinel surveillance.</li>
+        <li>Coordinated with provincial focal points to develop implementation plans and standardized templates/tools for sentinel surveillance.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Research Assistant <em style="font-weight:normal;font-size:0.9rem">(Full-time)</em></h3>
+        <span class="entry-date">Aug 2023 – Feb 2025</span>
+      </div>
+      <div class="entry-org">Center of Training and Research Management, National Institute of Hygiene and Epidemiology — Hanoi, Vietnam</div>
+      <ul>
+        <li>Developed a detailed research proposal <em>Effector and Memory Immune Responses to HPV Vaccination in Vietnamese Women Post Virus Exposure</em> — chaired by CIHE, funded by VINIF (VINIF.2023.DA174).</li>
+        <li>Analyzed and wrote articles based on data from the UCLA 4 project: <em>Strengthening Addiction Care Continuum through Community Consortium in Vietnam</em>.</li>
+        <li>Developed a research proposal and created intervention tools for the pilot study <em>Enhancing Hypertension Control through an Adapted Self-Monitoring Blood Pressure Intervention Among People Living with HIV on ART in Vietnam</em> (HMU–NYU, NIH 1D43TW012279-01A1).</li>
+        <li>Conducted abstract screening, risk of bias assessment, data extraction, and meta-analysis.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Research Assistant <em style="font-weight:normal;font-size:0.9rem">(Part-time)</em></h3>
+        <span class="entry-date">Jun 2020 – Aug 2021</span>
+      </div>
+      <div class="entry-org">Department of Research Methods and Biomedical Statistics, Hanoi Medical University — Hanoi, Vietnam</div>
+      <ul>
+        <li>Content development and teaching assistant for scientific research classes.</li>
+        <li>Built and managed WordPress websites: <a href="http://dbhi.edu.vn" target="_blank">dbhi.edu.vn</a> and <a href="http://influenza.info.vn" target="_blank">influenza.info.vn</a>.</li>
+        <li>Wrote a proposal for a topic surveying telemedicine home health care needs.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Data Manager <em style="font-weight:normal;font-size:0.9rem">(Part-time)</em></h3>
+        <span class="entry-date">Jan 2019 – Mar 2020</span>
+      </div>
+      <div class="entry-org">Department of Nutrition and Food Safety, Hanoi Medical University — Hanoi, Vietnam</div>
+      <ul>
+        <li>Implemented data collection at 36 preschools across 3 districts of Hanoi for the study <em>Overweight, Obesity and Genetic Characteristics, Nutritional Habits, Physical Activity in Preschool Children</em>.</li>
+        <li>Created an importer on Epidata, synthesized, and cleaned the data.</li>
+        <li>Analyzed data and wrote reports for the 7th English Scientific Conference (2nd prize).</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Data Collector <em style="font-weight:normal;font-size:0.9rem">(Part-time)</em></h3>
+        <span class="entry-date">Jun 2018 – Aug 2018</span>
+      </div>
+      <div class="entry-org">Department of Community Nutrition, Vietnam National Institute of Nutrition</div>
+      <ul>
+        <li>Conducted 24-hour dietary assessments, measured anthropometric indices, and collected raw food consumption data for the project <em>Partial Food Systems Baseline Assessment at the Vietnam Benchmark Sites</em> (CIAT & NIN).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-title">Education</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Doctor of Medicine (MD) — Preventive Medicine</h3>
+        <span class="entry-date">Jan 2017 – Dec 2023</span>
+      </div>
+      <div class="entry-org">Hanoi Medical University — Hanoi, Vietnam</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <h3>Good Clinical Practice (GCP) for Biomedical Researchers and Research Staff</h3>
+        <span class="entry-date">Apr 2023</span>
+      </div>
+      <div class="entry-org">UCLA</div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-title">Skills</div>
+    <table class="skills-table">
+      <tr>
+        <td>Data Management</td>
+        <td>REDCap, KoboToolbox, Epidata, Excel</td>
+      </tr>
+      <tr>
+        <td>Statistical Analysis</td>
+        <td>Stata, SPSS, R</td>
+      </tr>
+      <tr>
+        <td>Data Visualization</td>
+        <td>ggplot2 (R)</td>
+      </tr>
+      <tr>
+        <td>Scientific Writing</td>
+        <td>Research proposals, grant/budget planning, field planning</td>
+      </tr>
+      <tr>
+        <td>Systematic Review</td>
+        <td>Meta-analysis, risk of bias assessment, data extraction (PRISMA)</td>
+      </tr>
+      <tr>
+        <td>Office</td>
+        <td>Microsoft Excel, Word, PowerPoint</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section>
+    <div class="section-title">Languages</div>
+    <table class="skills-table">
+      <tr><td>Vietnamese</td><td>Native</td></tr>
+      <tr><td>English</td><td>Intermediate — IELTS 6.0 (Overall)</td></tr>
+    </table>
+  </section>
+
+  <!-- HONORS & AWARDS -->
+  <section>
+    <div class="section-title">Honors &amp; Awards</div>
+    <ul class="award-list">
+      <li>
+        <span class="award-year">Jan 2022</span>
+        <span><strong>First Prize</strong> — 8th Scientific Conference in English for Medical Students, Hanoi Medical University</span>
+      </li>
+      <li>
+        <span class="award-year">Jan 2021</span>
+        <span><strong>Second Prize</strong> — 7th Scientific Conference in English for Medical Students, Hanoi Medical University</span>
+      </li>
+      <li>
+        <span class="award-year">Aug 2022</span>
+        <span><strong>Third Prize</strong> — 9th Hackathon Scientific Research Competition, Vietnam Science Summer School</span>
+      </li>
+      <li>
+        <span class="award-year">Aug 2022</span>
+        <span><strong>Scholarship</strong> — 9th Vietnam Science Summer School, International Center for Interdisciplinary Science Education</span>
+      </li>
+      <li>
+        <span class="award-year">Aug 2021</span>
+        <span><strong>Certificate of Merit</strong> — Outstanding achievements in COVID-19 control, Ministry of Health</span>
+      </li>
+      <li>
+        <span class="award-year">Nov 2021</span>
+        <span><strong>Certificate of Merit</strong> — Outstanding achievements in COVID-19 control, Rector of Hanoi Medical University</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section>
+    <div class="section-title">Publications</div>
+    <ol class="pub-list">
+      <li>Nguyen TBV, <strong>Kim-Duy Vu</strong>, Cu LTN, et al. Socioeconomic inequalities in cervical cancer screening practices in Vietnam: a decomposition analysis. <span class="journal">BMC Public Health</span>. 2025;25(1):1253.</li>
+      <li>Anh-Tuan Le, Loc Quang Pham, ..., <strong>Kim-Duy Vu</strong>, et al. Facilitators and Barriers to HIV Pre-Exposure Prophylaxis Adherence and Retention Among Young Men Who Have Sex With Men: A Meta-Ethnographic Scoping Review. <span class="journal">AIDS and Behavior</span>. 2025;29:1075–1088.</li>
+      <li>Dai N-V, Son PDH, ..., <strong>Kim-Duy Vu</strong>, et al. Comparison of In-Hospital Outcomes of Surgical Stabilization of Rib Fractures with Nonsurgical Management: A Multicenter, Prospective, Cohort Study. <span class="journal">Acta Informatica Medica</span>. 2023;31(4):275.</li>
+      <li>Duy Binh Le, <strong>Kim-Duy Vu</strong>, et al. Percutaneous Nephrolithotripsy Practice In Vietnam: A Systematic Scoping Review. <span class="journal">Vietnam Medical Journal</span>. 2022;515(1).</li>
+      <li>Nguyen T-M, Le V-T, ..., <strong>Vu Kim Duy</strong>, et al. An initial 5-year single-center experience of 365 patients undergoing the video-assisted thoracoscopic surgery Nuss procedure for pectus excavatum in resource-scarce setting. <span class="journal">Frontiers in Surgery</span>. 2021;8:693562.</li>
+      <li>Trang Ngoc Anh Nguyen, Nam Hoai Nguyen, <strong>Kim-Duy Vu</strong>, Lam Tung Ngoc Cu. Short-term effects of Kinesiotaping combined with a rehabilitation program for rotator cuff-related shoulder pain: a randomized, assessor-blinded clinical trial. <span class="journal">Journal of Manual &amp; Manipulative Therapy</span>. 2024:1–10.</li>
+      <li>Đỗ Nam Khánh, ..., <strong>Vũ Kim Duy</strong>, et al. The Relationship Between Nutritional Care Practices In The First 1000 Days Of Early Childhood And Obesity Status In Preschool Children, Hoang Mai - Hanoi. <span class="journal">Vietnam Journal of Medical Research</span>.</li>
+      <li>Đỗ Nam Khánh, Vũ Thị Tuyền, <strong>Vũ Kim Duy</strong>, et al. Overweight, obesity status and some associated factors at home of preschool children at Dong Anh district, Hanoi in 2019. <span class="journal">Vietnam Journal of Preventive Medicine</span>. 2020;30(1):88–94.</li>
+      <li>Đỗ Nam Khánh, Vũ Thị Tuyền, <strong>Vũ Kim Duy</strong>, et al. Relationship between maternal care and overweight obesity status of children at Dong Anh District, Hanoi City. <span class="journal">Vietnam Journal of Medical Research</span>. 2020;490(2):4–7.</li>
+      <li>Dương Thị Hiền, ..., <strong>Vũ Kim Duy</strong>, et al. Pre-Exposure Prophylaxis (PrEP) treatment adherence and related factors among men have sex with men in Nghe An, 2022. <span class="journal">Vietnam Journal of Preventive Medicine</span>. 2023;33(3):123–30.</li>
+      <li>Hà Thị Cẩm Vân, ..., <strong>Vũ Kim Duy</strong>, et al. Effectiveness of interventions to improve counselling skills of commune health workers in increasing utilization of HIV, drug services in 4 Vietnamese northern provinces, 2018–2019. <span class="journal">Vietnam Journal of Preventive Medicine</span>. 2023;33(1):86–93.</li>
+      <li>Lê Thị Diễm Trinh, Trần Đại Quang, Lê Anh Tuấn, <strong>Vũ Kim Duy</strong>. The effectiveness of health education and communication intervention in increasing knowledge about hepatitis B virus infection among Southern Khmer people in Tra Vinh province. <span class="journal">Vietnam Journal of Preventive Medicine</span>. 2023;33(5):85–94.</li>
+      <li>Nguyen Quoc Doanh, ..., <strong>Vu Kim Duy</strong>, et al. Health of health staff at some centers for disease control in 4 provinces in Vietnam. <span class="journal">Vietnam Medical Journal</span>. 2022;519(2):206–10.</li>
+      <li>Nguyễn Thị Thùy Dương, ..., <strong>Vũ Kim Duy</strong>, et al. Effectiveness of intervention to improve health workers' satisfaction with health insurance examination and treatment at commune health stations of Mai Chau district, Hoa Binh province in 2018–2019. <span class="journal">Vietnam Journal of Preventive Medicine</span>. 2024;34(5):130–7.</li>
+      <li>Phan Ngọc Hà, <strong>Vũ Kim Duy</strong>, et al. Situation and some factors related to stress disorder of high school students in Hanoi during the period of isolation due to the Covid-19 epidemic. <span class="journal">Vietnam Medical Journal</span>. 2022;519(2):343–9.</li>
+    </ol>
+  </section>
+
+  <!-- REFERENCES -->
+  <section>
+    <div class="section-title">References</div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>Le Anh Tuan, MD, PhD</h4>
+        <p>Researcher, Center of Training and Research Management</p>
+        <p>National Institute of Hygiene and Epidemiology (NIHE)</p>
+        <p>📍 1 Yersin, Hanoi, Vietnam</p>
+        <p>📞 +84 9 8373 8688</p>
+        <p>✉ <a href="mailto:tuanvn@hso.gmail.com">tuanvn@hso.gmail.com</a></p>
+      </div>
+      <div class="ref-card">
+        <h4>Loc Quang Pham, MD, PhD</h4>
+        <p>Lecturer, Dept. of Epidemiology, School of Preventive Medicine and Public Health</p>
+        <p>Research Scientist, CREATA, Hanoi Medical University</p>
+        <p>📍 No. 1 Ton That Tung St., Dong Da, Hanoi</p>
+        <p>📞 +84 979 641 191</p>
+        <p>✉ <a href="mailto:phamquangloc@hmu.edu.vn">phamquangloc@hmu.edu.vn</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Last updated: April 2026 &nbsp;·&nbsp; Kim-Duy Vu &nbsp;·&nbsp; <a href="mailto:vukimduy99@gmail.com">vukimduy99@gmail.com</a>
+  </footer>
+
+</div>
+</body>
+</html>
